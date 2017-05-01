@@ -231,12 +231,14 @@ class JobQueueTaskScheduler extends TaskScheduler {
             continue;
           }
 
-          Task t = 
+          System.out.print("LEMONADE!!! TrackerName: " + taskTrackerStatus.getTrackerName() +
+                  " , " + "Host: " + taskTrackerStatus.getHost() + "\n");
+
+          Task t =
             job.obtainNewReduceTask(taskTrackerStatus, numTaskTrackers, 
                                     taskTrackerManager.getNumberOfUniqueHosts()
                                     );
 
-          System.out.print("LEMONADE!!! TrackerName: " + taskTrackerStatus.getTrackerName() + " , " + "Host: " + taskTrackerStatus.getHost());
 
 
           if (t != null) {
