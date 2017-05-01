@@ -239,7 +239,8 @@ class JobQueueTaskScheduler extends TaskScheduler {
                                     taskTrackerManager.getNumberOfUniqueHosts()
                                     );
 
-          System.out.print("MILK!!! ReduceTaskToSchedule: " +  + "\n");
+          System.out.print("MILK!!! ReduceTaskToSchedule: " + t.getTaskID() +
+                  " , " + "Partition ID: " + t.getPartition() + "\n");
 
           
           if (t != null) {
