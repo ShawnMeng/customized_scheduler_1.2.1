@@ -236,7 +236,7 @@ class JobQueueTaskScheduler extends TaskScheduler {
                                     taskTrackerManager.getNumberOfUniqueHosts()
                                     );
 
-            System.out.print("TrackerName: " + taskTrackerStatus.getTrackerName() + " , " + "Host: " + taskTrackerStatus.getHost());
+          System.out.print("LEMONADE!!! TrackerName: " + taskTrackerStatus.getTrackerName() + " , " + "Host: " + taskTrackerStatus.getHost());
 
 
           if (t != null) {
@@ -254,7 +254,7 @@ class JobQueueTaskScheduler extends TaskScheduler {
       }
     }
 
-    System.out.print("HELLO FLAGSHIP!!!!!!!!");
+    System.out.print("HELLO FLAGSHIP!!!!!!!!\n");
 
     if (LOG.isDebugEnabled()) {
       LOG.debug("Task assignments for " + taskTrackerStatus.getTrackerName() + " --> " +
