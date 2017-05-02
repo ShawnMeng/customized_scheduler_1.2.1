@@ -234,10 +234,12 @@ class JobQueueTaskScheduler extends TaskScheduler {
           System.out.print("LEMONADE!!! TrackerName: " + taskTrackerStatus.getTrackerName() +
                   " , " + "Host: " + taskTrackerStatus.getHost() + "\n");
 
-          Task t =
-            job.obtainNewReduceTask(taskTrackerStatus, numTaskTrackers, 
-                                    taskTrackerManager.getNumberOfUniqueHosts()
-                                    );
+          do {
+            Task t =
+                    job.obtainNewReduceTask(taskTrackerStatus, numTaskTrackers,
+                            taskTrackerManager.getNumberOfUniqueHosts()
+                    );
+          } while (t != null && (t.getPartition() != host));
 
           if (t != null) {
             System.out.print("MILK!!! ReduceTaskToSchedule: " + t.getTaskID() +
@@ -270,9 +272,9 @@ class JobQueueTaskScheduler extends TaskScheduler {
             ")] [" + reduceLoadFactor + ", " + trackerReduceCapacity + ", " +
             trackerCurrentReduceCapacity + "," + trackerRunningReduces +
             "] -> [" + (trackerCurrentReduceCapacity - trackerRunningReduces) +
-            ", " + (assignedTasks.size()-assignedMaps) + "]");
+            ", " + (assignedTasks.size()-assignedMaps) + "]\n");
 
-    if (LOG.isDebugEnabled()) {
+/*    if (LOG.isDebugEnabled()) {
       LOG.debug("Task assignments for " + taskTrackerStatus.getTrackerName() + " --> " +
                 "[" + mapLoadFactor + ", " + trackerMapCapacity + ", " + 
                 trackerCurrentMapCapacity + ", " + trackerRunningMaps + "] -> [" + 
@@ -283,7 +285,7 @@ class JobQueueTaskScheduler extends TaskScheduler {
                 "] -> [" + (trackerCurrentReduceCapacity - trackerRunningReduces) + 
                 ", " + (assignedTasks.size()-assignedMaps) + "]");
     }
-
+*/
     return assignedTasks;
   }
 
