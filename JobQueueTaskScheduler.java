@@ -239,8 +239,10 @@ class JobQueueTaskScheduler extends TaskScheduler {
                                     taskTrackerManager.getNumberOfUniqueHosts()
                                     );
 
-          System.out.print("MILK!!! ReduceTaskToSchedule: " + t.getTaskID() +
-                  " , " + "Partition ID: " + t.getPartition() + "\n");
+          if (t != null) {
+            System.out.print("MILK!!! ReduceTaskToSchedule: " + t.getTaskID() +
+                    " , " + "Partition ID: " + t.getPartition() + "\n");
+          }
 
           
           if (t != null) {
@@ -259,6 +261,16 @@ class JobQueueTaskScheduler extends TaskScheduler {
     }
 
     System.out.print("HELLO FLAGSHIP!!!!!!!!\n");
+
+    System.out.print("Task assignments for " + taskTrackerStatus.getTrackerName() + " --> " +
+            "[" + mapLoadFactor + ", " + trackerMapCapacity + ", " +
+            trackerCurrentMapCapacity + ", " + trackerRunningMaps + "] -> [" +
+            (trackerCurrentMapCapacity - trackerRunningMaps) + ", " +
+            assignedMaps + " (" + numLocalMaps + ", " + numNonLocalMaps +
+            ")] [" + reduceLoadFactor + ", " + trackerReduceCapacity + ", " +
+            trackerCurrentReduceCapacity + "," + trackerRunningReduces +
+            "] -> [" + (trackerCurrentReduceCapacity - trackerRunningReduces) +
+            ", " + (assignedTasks.size()-assignedMaps) + "]");
 
     if (LOG.isDebugEnabled()) {
       LOG.debug("Task assignments for " + taskTrackerStatus.getTrackerName() + " --> " +
