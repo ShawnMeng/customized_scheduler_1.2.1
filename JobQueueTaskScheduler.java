@@ -231,19 +231,21 @@ class JobQueueTaskScheduler extends TaskScheduler {
             continue;
           }
 
-          System.out.print("LEMONADE!!! TrackerName: " + taskTrackerStatus.getTrackerName() +
-                  " , " + "Host: " + taskTrackerStatus.getHost() + "\n");
+          //System.out.print("LEMONADE!!! TrackerName: " + taskTrackerStatus.getTrackerName() +
+          //        " , " + "Host: " + taskTrackerStatus.getHost() + "\n");
 
-          do {
-            Task t =
-                    job.obtainNewReduceTask(taskTrackerStatus, numTaskTrackers,
-                            taskTrackerManager.getNumberOfUniqueHosts()
-                    );
-          } while (t != null && (t.getPartition() != host));
+
+          Task t =
+                  job.obtainNewReduceTask(taskTrackerStatus, numTaskTrackers,
+                          taskTrackerManager.getNumberOfUniqueHosts()
+                  );
+
 
           if (t != null) {
             System.out.print("MILK!!! ReduceTaskToSchedule: " + t.getTaskID() +
-                    " , " + "Partition ID: " + t.getPartition() + "\n");
+                    " , " + "Partition ID: " + t.getPartition() + ", TrackerName: " + 
+                    taskTrackerStatus.getTrackerName() + " , " + "Host: " + 
+                    taskTrackerStatus.getHost()"\n");
           }
 
           
