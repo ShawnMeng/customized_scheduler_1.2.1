@@ -2220,12 +2220,16 @@ public class JobInProgress {
         // check if the tip has failed on this host
         if (!tip.hasFailedOnMachine(ttStatus.getHost()) || 
              tip.getNumberOfFailedMachines() >= numUniqueHosts) {
-          if (tip.getIdWithinJob() == hm.get(ttStatus.getHost())) {
-
+          if (nonRunningReduces.contains(tip)) {
+            if (tip.getIdWithinJob() == hm.get(ttStatus.getHost())) {
+            System.out.print("A NEW REDUCER SCHEDULED!!!!!\n");
             // check if the tip has failed on all the nodes
             iter.remove();
             return tip;
-
+            }
+          } else {
+            iter.remove();
+            return tip;
           }
         } else if (removeFailedTip) {
           // the case where we want to remove a failed tip from the host cache

@@ -245,7 +245,7 @@ class JobQueueTaskScheduler extends TaskScheduler {
             System.out.print("MILK!!! ReduceTaskToSchedule: " + t.getTaskID() +
                     " , " + "Partition ID: " + t.getPartition() + ", TrackerName: " + 
                     taskTrackerStatus.getTrackerName() + " , " + "Host: " + 
-                    taskTrackerStatus.getHost()"\n");
+                    taskTrackerStatus.getHost() + "\n");
           }
 
           
